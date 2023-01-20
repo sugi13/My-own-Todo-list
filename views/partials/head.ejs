@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo | <%= title %> </title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+    body{
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: white;
+      background: black;
+    }
+    header{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px;
+    }
+    header a{
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color:#4e0e9d;
+    }
+    nav{
+      display: flex;
+    }
+    nav li{
+      list-style-type: none;
+      padding: 20px;
+    }
+    section{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    section .list-header{
+      font-size: 1.2rem;
+    }
+    section .list-header h1{
+      color:rgb(172, 172, 172);
+    }
+    section .task-list{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+    .task-list div{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #330867;
+      margin: 30px;
+      padding: 10px;
+      border-radius: 5px;
+      width: 120%;
+    }
+    .task-list div h5{
+      font-size: 1rem;
+      color:aliceblue;
+    }
+    .task-list div p{
+      opacity: .4;
+      font-size: .8rem;
+    }
+    .about-content{
+      text-align: center;
+      font-size: 1rem;
+    }
+    .about-content p{
+      font-size: 1.2rem;
+    }
+    footer h1{
+      text-align: center;
+  }
+    form{
+      margin-top: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+    .form input{
+      padding: 10px;
+      font-family: 'Poppins', sans-serif;
+      width: 100%;
+      border-radius: 10px;
+      border:none;
+      font-size: 1.2rem;
+    }
+    .form input:focus{
+      outline: none;
+    }
+    .form button{
+      padding: 10px;
+      font-family: 'Poppins', sans-serif;
+      border-radius: 10px;
+      background: #330867;
+      color: white;
+    }
+    .delete-btn{
+      background: #4e0e9d;
+      color:white;
+      font-family: 'Poppins', sans-serif;
+      border:none;
+      padding: 5.5px;
+      border-radius: 5px;
+      box-shadow: 2px 5px 2px black;;
+    }
+
+    @media screen and (max-width: 578px) {
+        header{
+          flex-direction: column;
+          padding: 0;
+          gap: 40px;
+          margin: 10px;
+          align-items: center;
+        }
+        .brand a{
+          font-size: 2rem;
+          color:#FCCB04;
+        }
+        .task-list div{
+          width:100%;
+        }
+        .about-content p{
+          font-size: 1rem;
+        }
+        footer{
+          margin-top: 200px;
+        }
+        footer h1{
+          font-size: 1.2rem;
+        }
+        nav {
+          border-radius: 5px;
+        }
+        nav li a{
+          color:#FCCB04;
+          font-size: .9rem;
+        }
+        ion-icon{
+          position: relative;
+          top: 3px;
+          left: 10px;
+        }
+        .form input{
+          font-size: 1rem;
+          background: #24243C;
+          color: white;
+        }
+        .form button{
+          background-color: #330867;
+          border:none;
+          border-radius: 0;
+        }
+        .form {
+          margin-top: -50px;
+        }
+        .task-list div{
+          margin-top: 10px;
+          border: 2px solid #242B2C;
+          background: none;
+          margin: 20px;
+        }
+        .delete-btn{
+          background: #24243C;
+        }
+        .about-content{
+          text-align: left;
+        }
+    }
+
+  </style>
+</head>

@@ -1,0 +1,51 @@
+<%- include ('./partials/head.ejs')  %> 
+<%- include ('./partials/navBar.ejs')  %> 
+
+
+<section>
+  <div class="list-header">
+    <h1>Your Task</h1>
+  </div>
+  <div class="task-list">
+    <% if (ToDos.length > 0) { %>
+      <% ToDos.forEach(Todo => { %> 
+        <div>
+            <h5><%= Todo.Task %></h5>
+            <p><%= Todo.Category %></p>
+        <button class="delete-btn" data-doc="<%= Todo._id %> ">Delete</button>
+        </div>
+        <% }) %> 
+    <% } else { %> 
+      <p>No Task has been added</p>
+      <% } %> 
+  </div>
+</section>
+
+<script>
+  let removeButton = document.querySelector('.delete-btn');
+
+  removeButton.addEventListener('click', (e) =>{
+
+    //make a delete request //
+    let endpoint = `/home/${removeButton.dataset.doc}`;
+
+    fetch(endpoint, {
+      method: 'DELETE',
+    })
+    .then((response) =>{
+      response.json();
+    })
+    .then((data) =>{
+      console.log(data)
+      location.reload();
+    })
+    .catch((err) =>{
+      console.log(err);
+    })
+
+  })
+
+</script>
+
+</body>
+</html>

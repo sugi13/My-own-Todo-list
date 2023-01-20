@@ -1,0 +1,157 @@
+/* Intro to Node */
+
+1. The v8 compiler or engine in browser runs the js code and convert into a machine code.
+2. The node js act as a server and it returns the html pages and it for server side rendering.
+
+ ----------------------------------------------------------------------------------------------------------
+/* Basics of Node */
+
+Global object:
+1. globalThis
+    window is an global object so that we can access all global functions, objects and variables so that we can access all functions and variables in browser.
+    In computer, we can access the global functions, variable and objects using "global" or "globalThis".
+    It is an object.
+2. __dirname
+    It returns the current directory name.
+    __filename
+    It returns the current file name.
+
+--------------------------------------------------------------------------------------------------------   
+
+Import and Export 
+
+   1.To import, 
+   let variableName = require("./ filepath");
+
+   2.To export,
+   let exportingContent;
+   module.exports = exportingContent;
+
+   To export multiple values module.exports = {values, values};
+
+[Note the variableName returns empty unless it exported.]
+
+ ----------------------------------------------------------------------------------------------------------
+
+// File system -> [on computer] //
+
+let fs = require("fs);
+
+With the file system we can read write and even the delete the files using js.
+
+To read [check if file exist using existingSync method];
+  fs.readFile("relative path", function); ==> take two arguments
+  The read file is a async function that take two arguments: the path to the file and a function that returns the content of the file.
+  =>In the function also takes two arguments on error and on success.
+  => the on success returns the buffered data
+  => to read the content use toString method.
+
+To write 
+ fs.writeFile(relative path, Things to change in the file, callback function) => take three arguments
+  => It changes the content of the specified file
+
+To delete file 
+fs.unlink("relative path", callback function);
+
+ ----------------------------------------------------------------------------------------------------------
+
+// streams and Buffers //
+Streams is nothing but a loading of data. It returns buffered data which is non readable format.
+ 
+ To use streams, 
+ => use filesystem and add a method called createReadStream
+ => The createReadStream method accept two arguments, to read the file, 
+     an object that convert the user readable format {encoding: utf8};
+
+     readStream.on("data", (text)=>{
+     console.log(text);
+    })
+
+   => Here on is a event Listener and "data" is a event. The "text" is a argument which read the data and 
+    returns as a string..
+
+ ----------------------------------------------------------------------------------------------------------
+
+ /* Servers and clients */ {Here the browser acts as a client and host or computer act as a server}
+
+ => To create a server, add http require file.
+ => Then the "createServer" method accept two arguments, request and response.
+ => for servers "listen" event listener method added and it is used to listen the requests.
+ The listen event should accept three arguments.
+ 1. port number.
+ 2. server name => "localhost"
+ 3. A callback function.
+
+// Response Object //
+
+  1. Response Header
+  Its used for the response and what type of response it returned like html pages or JSON data or Text.
+
+  // set header content [set response]
+  res.setHeader("content-type", "text/html" or "text/plain")
+  res.write("Content goes down here");
+  res.end(); // It returns all the content back to the browser.
+
+---------------------------------------------------------------------------------------------------------- 
+
+// To send HTML pages to browser use this //
+
+note: [To send pages must create a new folder and html pages into it];
+
+const http = require("http");
+const fs = require("fs");
+
+let server = http.createServer((req, res) =>{
+
+  //set response type from the requested URL //
+  res.setHeader('Content-Type', 'text/html');
+
+  // send an html file
+  fs.readFile("./htmlPages/index.html", (err, data)=>{
+    if(err){
+      console.log(err);
+      res.end();
+    }
+    else{
+      res.write(data);
+      res.end();
+    }
+  })
+
+});
+
+server.listen(3000, "localhost", ()=>{
+  console.log("Listening requests from port 3000");  // server start listening for requests from browser.
+})
+
+// basic routing //
+let server = http.createServer((req, res) =>{
+
+  res.setHeader('Content-Type', 'text/html');
+
+  let urlPath = "./htmlPages/";
+  switch(req.url){
+    case '/':
+      urlPath += "index.html"
+      break;
+    case "/about":
+      urlPath += "about.html"
+      break;
+    case "/contact":
+      urlPath += "contact.html" 
+      break;
+    default :
+    urlPath +=  "error.html"  
+    break;
+  }
+  fs.readFile(urlPath, (err, data)=>{
+    if(err){
+      console.log(err);
+      res.end();
+    }
+    else{
+      res.write(data);
+      res.end();
+    }
+  })
+});

@@ -1,0 +1,15 @@
+
+<%- include ('./partials/head.ejs')  %> 
+<body>
+  <%- include ('./partials/navBar.ejs')  %> 
+  <section>
+    <div class="form">
+      <form action="/home" method="post">
+        <input type="text" id="Add your Task" placeholder="Task"  name="Task" required>
+      <input type="text" id="Add category" placeholder="Category" name="Category" required>
+      <button>Add</button>
+      </form>
+    </div>
+  </section>
+</body>
+</html>
